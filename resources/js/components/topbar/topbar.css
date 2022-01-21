@@ -1,0 +1,49 @@
+.TopBar .logo {
+  float: left;
+  width: 140px;
+  height: 40px;
+  padding: 5px 10px;
+}
+.TopBar .logo div{
+  line-height: 30px;
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  text-align: center;
+}
+
+
+.TopBar {
+  width: 100%;
+  background: white;
+  height: 41px;
+  padding: 0px;
+  line-height: 40px;
+  border-bottom: 1px solid lightgray;
+}
+
+.TopBar .ant-menu-horizontal{
+  line-height: 40px;
+}
+
+.TopBar .ant-menu-title-content{
+  padding: 4px;
+}
+.TopBar .ant-menu-title-content:hover{
+  border-left: 2px solid #1890ff;
+  border-right: 2px solid #1890ff;
+}
+
+.TopBar .ant-menu-item-active::after, .TopBar .ant-menu-item-selected::after{
+  border-bottom: 2px solid white!important;
+}
+
+.TopBar .ant-menu-item-selected a{
+  padding: 0px 2px;
+  color: #1890ff!important;
+  font-weight: bold;
+  border-left: 2px solid #1890ff;
+  border-right: 2px solid #1890ff;
+}

@@ -1,0 +1,11 @@
+.ant-tree-list{
+    padding-top: 4px;
+    height: 100%!important;
+}
+.ant-tree-node-content-wrapper:hover{
+    color: #1890ff!important;
+}
+.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
+    background: white!important;
+    color: #1890ff!important;
+}

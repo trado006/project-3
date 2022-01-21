@@ -1,0 +1,29 @@
+table{
+    width: 100%;
+}
+table, td{
+    border:10px solid white;
+}
+
+table tr td{
+    width: 25%;
+}
+tr#my td{
+    text-align: right;
+}
+tr#my td span{
+    background: lightgreen;
+    border: 1px solid lightgreen;
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+    font: 14px;
+}
+
+tr#partner td span{
+    background:lightgray;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 5px;
+    font: 14px;
+}

@@ -1,0 +1,137 @@
+POST http://localhost:8000/api/sign-up
+Content-Type: application/json
+Authorization: Bearer
+
+{
+    "position": "admin",
+    "login_name": "admin1",
+    "password": "123456",
+    "gender": "male",
+    "full_name": "nguyen van an 3",
+    "email": "teacher@gmail.com",
+    "phone": "012754331",
+    "birthday": "1988/01/22",
+    "hometown": "hometown1",
+    "introduction": "introduction"
+}
+###
+POST http://localhost:8000/api/log-in
+Content-Type: application/json
+
+{
+    "login_name": "teacher1",
+    "password": "123456"
+}
+###
+GET http://localhost:8000/api/my-info
+Content-Type: application/json
+//Authorization: Bearer Lz7cdLcTfygpe8kob1X9pzCiP4yeSqNh8O4FbyKeGUF0BIf83uEjp6asoJr4
+//Authorization: Bearer 7Pyo3vi8e8NsjPCjygYTRXCAoqgtZSNYaMprDg3FfWP017SKUP4SVTIvGbsI
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+PUT http://localhost:8000/api/my-info
+Content-Type: application/json
+//Authorization: Bearer Lz7cdLcTfygpe8kob1X9pzCiP4yeSqNh8O4FbyKeGUF0BIf83uEjp6asoJr4
+Authorization: Bearer 7Pyo3vi8e8NsjPCjygYTRXCAoqgtZSNYaMprDg3FfWP017SKUP4SVTIvGbsI
+//Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+
+{
+    "gender": "male",
+    "full_name": "teacher one",
+    "email": "teacher@gmail.com",
+    "phone": "01275431111",
+    "birthday": "1988/11/22",
+    "hometown": "hometown2",
+    "active": "0",
+    "introduction": "introduction2"
+}
+###
+GET http://localhost:8000/api/students
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+GET http://localhost:8000/api/teachers
+Authorization: Bearer 58DbCwHmELy1vdBVW9qMUo3T2vvFwc2dCrbyTGu8l6i2ZuP9TCrv8q3FRwVP
+###
+PUT http://localhost:8000/api/active-teacher/4
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+PUT http://localhost:8000/api/inactive-teacher/4
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+DELETE http://localhost:8000/api/user/9
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+GET http://localhost:8000/api/courses
+Content-Type: application/json
+###
+GET http://localhost:8000/api/my-course-tree
+Authorization: Bearer Lz7cdLcTfygpe8kob1X9pzCiP4yeSqNh8O4FbyKeGUF0BIf83uEjp6asoJr4
+//Authorization: Bearer 7Pyo3vi8e8NsjPCjygYTRXCAoqgtZSNYaMprDg3FfWP017SKUP4SVTIvGbsI
+//Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+GET http://localhost:8000/api/course/3
+###
+GET http://localhost:8000/api/search-course/giai%tich
+###
+POST http://localhost:8000/api/course
+Content-Type: application/json
+//Authorization: Bearer Lz7cdLcTfygpe8kob1X9pzCiP4yeSqNh8O4FbyKeGUF0BIf83uEjp6asoJr4
+//Authorization: Bearer 7Pyo3vi8e8NsjPCjygYTRXCAoqgtZSNYaMprDg3FfWP017SKUP4SVTIvGbsI
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+
+{
+    "code": "MI1122",
+    "name": "course 2",
+    "description": "description for course 2",
+    "price": 5000
+}
+###
+GET http://localhost:8000/api/students/search/student
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+
+###
+GET http://localhost:8000/api/course/1/members
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+POST http://localhost:8000/api/course/1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="code"
+
+title
+# ------WebKitFormBoundary7MA4YWxkTrZu0gW
+# Content-Disposition: form-data; name="image"; filename="1.png"
+# Content-Type: image/png
+
+# < ./1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+POST http://localhost:8000/api/course/1
+Content-Type: application/json
+//Authorization: Bearer Lz7cdLcTfygpe8kob1X9pzCiP4yeSqNh8O4FbyKeGUF0BIf83uEjp6asoJr4
+//Authorization: Bearer 7Pyo3vi8e8NsjPCjygYTRXCAoqgtZSNYaMprDg3FfWP017SKUP4SVTIvGbsI
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+
+{
+    "code": "MI122",
+    "name": "course to 2",
+    "description": "description for course to 2",
+    "price": 6000
+}
+###
+DELETE http://localhost:8000/api/course/2
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+POST http://localhost:8000/api/course/1/add-student/2
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+POST http://localhost:8000/api/course/1/add-teacher/5
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+DELETE http://localhost:8000/api/course/1/delete-student/2
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd
+###
+DELETE http://localhost:8000/api/course/1/delete-teacher/5
+Authorization: Bearer V0iQPmP7I5gNq61okozozYcwIqREkUJXuoQjJCVaf37GZAqi8SnSFCfFZWNd

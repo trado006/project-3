@@ -1,0 +1,60 @@
+cài đặt laravel
+ > composer create-project --prefer-dist laravel/laravel project-3
+cài đặt react
+ > composer require laravel/ui
+ > php artisan ui react
+ > npm install
+tạo wildcard route
+ > Route::get('{path?}', 'RenderSpaView')->where('path', '[a-zA-Z0-9-/]+');
+
+```php
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Laravel & React</title>
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+<div id="app"></div>
+
+<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>
+```
+
+cài đặt thư viện bổ trợ
+ > npm install react-router-dom
+ > npm install antd
+
+chạy project
+ > php artisan serve
+
+chạy trình dịch reactjs
+ > npm run watch
+run first
+ > npm install resolve-url-loader@^4.0.0 --save-dev --legacy-peer-deps
+
+cách sử dụng thư viện react-router-dom
+ > import { BrowserRouter, Route, Routes as Switch } from 'react-router-dom'
+ <BrowserRouter>
+    <div>
+        <Header />
+    </div>
+    <div className="center">
+        <Switch>
+            <Route path='/create' element={<Add />} />
+            <Route path='/' element={<Get />} />
+        </Switch>
+    </div>
+ </BrowserRouter>
+
+sửa lỗi không tìm thấy controller
+ >
+
+cách sử dụng axios

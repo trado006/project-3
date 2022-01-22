@@ -32,10 +32,22 @@ class CourseController extends Controller
 
     public function myCourseTree(Request $req){
         if($req->user['position']=='admin'){
-            $courses = DB::table('courses')->select('id','name')->get();
+            $courses = Course::all();
+            $data = [];
+            foreach($courses as $courseIndex => $course){
+                $data[] = ['id'=>$course->id, 'name'=>$course->name];
+                $lectures = $course->lectures;
+                $data[$courseIndex]['lectures'] = [];
+
+                foreach($lectures as $lectureIndex => $lecture){
+                    $data[$courseIndex]['lectures'][] = ['id'=> $lecture->id, 'name' => $lecture->name];
+                    $tests = $lecture->tests;
+                    $data[$courseIndex]['lectures'][$lectureIndex]['tests'] = [];
+                }
+            }
             return response()->json([
                 'error_code' => 0,
-                'courses' => $courses,
+                'courses' => $data,
             ]);
         }
         if($req->user['position']=='student'){

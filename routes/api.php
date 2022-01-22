@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::put("my-info", "Api\UserController@update")->middleware('auth_login');
 
 Route::get('courses', "Api\CourseController@index");
 Route::get('course/{course}', "Api\CourseController@show");
+Route::get('course/{course}/members', "Api\CourseController@getMember")->middleware('auth_login');
 Route::get("my-course-tree", "Api\CourseController@myCourseTree")->middleware('auth_login');
 Route::get('search-course/{keyword}', "Api\CourseController@search");
 //Route::post('register-course/{courseId}', "Api\CoourseController@register")->middleware('auth_login');
@@ -48,12 +50,13 @@ Route::middleware(['auth_login', 'admin'])->group(function () {
     Route::post('course/{course}/add-teacher/{login_name}', 'Api\CourseController@addTeacher');
     Route::delete('course/{course}/delete-student/{student}', "Api\CourseController@deleteStudent");
     Route::delete('course/{course}/delete-teacher/{teacher}', "Api\CourseController@deleteTeacher");
-    Route::get('course/{course}/members', "Api\CourseController@getMember");
 });
 //done
 Route::get("lecture/{lecture}", "Api\LectureController@show");
 Route::get("test/{test}", "Api\TestController@show");
-Route::get("test/{test}/questions", "Api\QuestionController@index");
+Route::get("test/{test}/questions", "Api\QuestionController@index")->middleware('auth_login');
+Route::post("test/{test}/make-test", "Api\TestController@makeTest")->middleware('auth_login');
+
 
 Route::middleware(['auth_login', 'teacher'])->group(function () {
     Route::post("course/{course}/lecture", "Api\LectureController@store");
@@ -66,6 +69,7 @@ Route::middleware(['auth_login', 'teacher'])->group(function () {
     
     Route::get("test/{test}/full-questions", "Api\QuestionController@getFullQuestions");
     Route::post("test/{test}/full-question", "Api\QuestionController@store");
+    Route::get("test/{test}/test-results", "Api\TestResultController@index");
     Route::put("full-question/{question}", "Api\QuestionController@update");
     Route::delete("full-question/{question}", "Api\QuestionController@destroy");
 });

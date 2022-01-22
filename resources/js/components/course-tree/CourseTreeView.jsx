@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 export default function CourseTreeView({ courseTreeData, selectedKey, onSelected,
                                 onAddCourse, onUpdateCourse, onDeleteCourse,
                                 onAddLecture, onUpdateLecture, onDeleteLecture,
-                                onAddTest, onUpdateTest, onDeleteTest }){
+                                onAddTest, onUpdateTest, onDeleteTest, onViewTestResults }){
 
     //const [courseTreeView, setCourseTreeView] = useState([]);
     const [courseTreeView, setCourseTreeView ] = useState([]);
@@ -138,6 +138,14 @@ export default function CourseTreeView({ courseTreeData, selectedKey, onSelected
         return (
             <Menu onClick={(event) => {event.domEvent.stopPropagation()}}>
             {
+                onViewTestResults &&
+                <Menu.Item key="0">
+                    <a onClick={()=>{ onViewTestResults(testId) }}>
+                        Test results
+                    </a>
+                </Menu.Item>
+            }
+            {
                 onUpdateTest &&
                 <Menu.Item key="1">
                     <a onClick={()=>{ onUpdateTest(testId) }}>
@@ -158,7 +166,7 @@ export default function CourseTreeView({ courseTreeData, selectedKey, onSelected
     }
 
     function TestTitle(item){
-        if( !onUpdateTest && !onDeleteTest )
+        if( !onViewTestResults && !onUpdateTest && !onDeleteTest )
         return <div><i className="fa fa-file-text-o" /> {item.name}</div>;
         return (
             <Dropdown

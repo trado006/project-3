@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { message } from "antd";
 import API from '../../util/api';
 
-import CourseDetail from '../../components/course-detail/CourseDetail';
+import CourseView from '../../components/course-view/CourseView';
 
 export default function ViewCourse({selectedItem}){
     var courseId = selectedItem.id;
@@ -33,7 +33,7 @@ export default function ViewCourse({selectedItem}){
     return (
         <div className="d-flex flex-column align-items-center">
             <div className="mb-5" style={{width: '640px'}}>
-                <CourseDetail course={course} />
+                <CourseView course={course} />
             </div>
         </div>
     );

@@ -3,10 +3,28 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Lecture;
 use Illuminate\Http\Request;
 use App\Models\Test;
+use App\Models\TestResult;
+use Illuminate\Support\Facades\DB;
+
+function unique_multidim_array($array, $key) {
+    $temp_array = array();
+    $i = 0;
+    $key_array = array();
+   
+    foreach($array as $val) {
+        if (!in_array($val[$key], $key_array)) {
+            $key_array[$i] = $val[$key];
+            $temp_array[$i] = $val;
+        }
+        $i++;
+    }
+    return $temp_array;
+}
 
 class TestController extends Controller
 {
@@ -80,6 +98,44 @@ class TestController extends Controller
                 'msg' => 'update test fail'
             ], 200);
         }
+    }
+
+    public function makeTest(Request $req, Test $test)
+    {
+        if($req->user['position']!='student'){
+            return response()->json([
+                'error_code' => 2,
+                'msg' => 'student permision is require'
+            ], 200);
+        }
+        $makeTest = $req->all();
+        unique_multidim_array($makeTest,'id');
+        $ids = DB::table('questions')->where('test_id', $test->id)->pluck('id');
+        $ids = json_decode(json_encode($ids));
+        $total = count($ids);
+        $score = 0;
+        foreach($makeTest as $makeQuestion){
+            if(!in_array($makeQuestion['id'], $ids)) continue;
+            $answer = Answer::find($makeQuestion['id']);
+            if($answer){
+                $extra = 1;
+                if(!!$answer->choice1 != !!$makeQuestion['choice1']) $extra = 0;
+                if(!!$answer->choice2 != !!$makeQuestion['choice2']) $extra = 0;
+                if(!!$answer->choice3 != !!$makeQuestion['choice3']) $extra = 0;
+                if(!!$answer->choice4 != !!$makeQuestion['choice4']) $extra = 0;
+                $score += $extra;
+            }
+        }
+        $testResult = TestResult::create([
+            'student_id' => $req->user['id'],
+            'test_id' => $test->id,
+            'score' => $score,
+        ]);
+        $testResult->total = $total;
+        return response()->json([
+            'error_code' => 0,
+            'test_result' => $testResult,
+        ], 200);
     }
 
     /**

@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Modal, message } from 'antd';
-import './style.css';
-import API from '../../util/api';
 
 export default function App({ courseId, updateCourse, setIsModalVisible }){
     var choosedFile = null;
@@ -12,7 +10,7 @@ export default function App({ courseId, updateCourse, setIsModalVisible }){
     };
 
     useEffect(()=>{
-        API.get(`/course/${courseId}`)
+        axios.get(`/course/${courseId}`)
         .then(function (res) {
             if(res.data.error_code){
                 console.log(res.data);
@@ -39,7 +37,7 @@ export default function App({ courseId, updateCourse, setIsModalVisible }){
         formData.append('name', data.name.value);
         formData.append('price', data.price.value);
         formData.append('description', data.description.value);
-        API.post(`/course/${courseId}`,formData)
+        axios.post(`/course/${courseId}`,formData)
         .then((res)=>{
             console.log(res.data);
             if(res.data.error_code){

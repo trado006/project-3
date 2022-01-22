@@ -94,19 +94,17 @@ export default function App({selectedItem}){
         setIsModalVisible={setIsUpdateQuestionModalVisible} />
         }
         <div>
-            <div className="d-flex flex-column align-items-center">
-                <div className="mb-3" style={{width: '640px'}}>
-                    <TestInfo test={test} />
-                </div>
-                <div style={{width: '640px'}}>
-                    { fullQuestions.map((fullQuestion, index)=>
-                        <FullQuestionCard className="mb-5" key={index} number={index+1} fullQuestion={fullQuestion}
-                            deleteFullQuestion={deleteFullQuestion} updateFullQuestion={()=>onUpdateQuestion(fullQuestion)} /> )
-                    }
-                </div>
-                <div className="mb-5" style={{width: '640px'}}>
-                    <AddQuestionCard testId={testId} addFullQuestion={addFullQuestion} />
-                </div>
+            <div className="mb-3" style={{width: '640px'}}>
+                <TestInfo test={test} />
+            </div>
+            <div style={{width: '640px'}}>
+                { fullQuestions.map((fullQuestion, index)=>
+                    <FullQuestionCard className="mb-5" key={index} number={index+1} fullQuestion={fullQuestion}
+                        deleteFullQuestion={deleteFullQuestion} updateFullQuestion={()=>onUpdateQuestion(fullQuestion)} /> )
+                }
+            </div>
+            <div className="mb-5" style={{width: '640px'}}>
+                <AddQuestionCard testId={testId} addFullQuestion={addFullQuestion} />
             </div>
         </div>
         </>

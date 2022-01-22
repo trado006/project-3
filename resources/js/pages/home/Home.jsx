@@ -63,7 +63,7 @@ export default function App() {
                     onSearch={onSearch}
                 />
             </div>
-            <div className="box-courses-item d-flex flex-wrap justify-content-between px-5">
+            <div className="box-courses-item d-flex flex-wrap px-5">
                 {courses.map((course)=>
                     <CourseCard key={course.id} imgAlt="course image" imgSrc={course.picture} course={course} viewCourse={viewCourse} />
                 )}

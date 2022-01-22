@@ -10,7 +10,7 @@ import DeleteLectureModal from "../../components/delete-lecture-model/DeleteLect
 import AddTestModal from "../../components/add-test-modal/AddTestModal";
 import UpdateTestModal from "../../components/update-test-modal/UpdateTestModal";
 import DeleteTestModal from "../../components/delete-test-modal/DeleteTestModal";
-
+import TestResultTableModal from "./TestResultTableModal";
 
 var courseId = 0;
 var lectureId = 0;
@@ -25,6 +25,7 @@ export default function App({ selectedKey, onSelected}){
     const [isAddTestModalVisible, setIsAddTestModalVisible] = useState(false);
     const [isUpdateTestModalVisible, setIsUpdateTestModalVisible] = useState(false);
     const [isDeleteTestModalVisible, setIsDeleteTestModalVisible] = useState(false);
+    const [isTestResultTableModalVisible, setIsTestResultTableModalVisible] = useState(false);
     
     useEffect(()=>{
         axios.get('/my-course-tree')
@@ -203,6 +204,13 @@ export default function App({ selectedKey, onSelected}){
                     onHideModal={()=>setIsDeleteTestModalVisible(false)}
                 />
             }
+            {
+                isTestResultTableModalVisible &&
+                <TestResultTableModal
+                    testId={testId}
+                    onHideModal={()=>setIsTestResultTableModalVisible(false)}
+                />
+            }
 
             <CourseTreeView
                 courseTreeData={courseTreeData}
@@ -214,6 +222,7 @@ export default function App({ selectedKey, onSelected}){
                 onAddTest={(id)=>{lectureId=id;setIsAddTestModalVisible(true)}}
                 onUpdateTest={(id)=>{testId=id;setIsUpdateTestModalVisible(true)}}
                 onDeleteTest={(id)=>{testId=id;setIsDeleteTestModalVisible(true)}}
+                onViewTestResults={(id)=>{testId=id;setIsTestResultTableModalVisible(true)}}
             />
         </>
     )

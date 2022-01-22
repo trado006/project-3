@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { message } from "antd";
 
-import LectureDetail from '../../components/leture-detail/LectureDetail'
+import LectureView from '../../components/lecture-view/LectureView'
 
 export default function App({selectedItem}){
     var lectureId = selectedItem.id;
@@ -31,7 +31,7 @@ export default function App({selectedItem}){
     return (
         <div className="d-flex flex-column align-items-center">
             <div className="mb-5" style={{width: '640px'}}>
-                <LectureDetail lecture={lecture} />
+                <LectureView lecture={lecture} />
             </div>
         </div>
     );

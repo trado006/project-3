@@ -14,9 +14,9 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-window.io = require('socket.io-client');
+//window.io = require('socket.io-client');
 
-window.socket = io('http://localhost:3002/');
+//window.socket = io('http://localhost:3002/');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

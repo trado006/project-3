@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model
 {
     use HasFactory;
-
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'question_id';
+    
     /**
      * The attributes that are mass assignable.
      *

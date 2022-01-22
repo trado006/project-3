@@ -44,6 +44,15 @@ export default function App({ postCourse }) {
     const onClickFileUpload = () => {
         fileInputRef.current.click();
     }
+
+    const contentAdjust = (element) => {
+        element.style.height = "1px";
+        if(element.scrollHeight>4*25)
+        element.style.height = (element.scrollHeight)+"px";
+        else
+        element.style.height = (4*25) + "px";
+    }
+
     return (
         <form className="row" onSubmit={onSubmit}>
             <div className="col-xl-6 col-lg-6 col-md-12">
